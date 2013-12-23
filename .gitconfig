@@ -1,0 +1,20 @@
+[color]
+	ui = true
+
+[core]
+	autocrlf = input
+
+[alias]
+	edit-unmerged = "!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; geany `f`"
+	add-unmerged = "!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; git add `f`"
+
+	br = branch
+	ci = commit -a
+	co = checkout
+	ds = diff --stat
+	last = log -1 HEAD
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	praise = blame
+	st = status
+	unstage = reset HEAD --

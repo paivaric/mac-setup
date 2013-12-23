@@ -1,28 +1,25 @@
 #!/bin/sh
 
 GIT_COMPLETION_SCRIPT_LOCATION="https://raw.github.com/git/git/v1.8.5.2/contrib/completion/git-completion.bash"
-#HOMEBREW_GITHUB_API_TOKEN=
+# HOMEBREW_GITHUB_API_TOKEN=
 
 cd $(dirname $0)
 
 read -p "Install xcode command line tools? "
-    if [ $REPLY == "y" ]; then
-        xcode-select --install
-    fi
+if [ $REPLY == "y" ]; then
+    xcode-select --install
+fi
 
 read -p "Remove and deactivate Mac OSX Dashboard? "
-    if [ $REPLY == "y" ]; then
-        defaults write com.apple.dashboard mcx-disabled -boolean YES;killall Dock
-    fi
+if [ $REPLY == "y" ]; then
+    defaults write com.apple.dashboard mcx-disabled -boolean YES;killall Dock
+fi
 
-echo "Configuring bash and ssh... "
-mkdir ~/code ~/tools ~/.ssh
+echo "Configuring bash... "
+# mkdir ~/code ~/tools ~/.ssh
 cp -i .bash_aliases ~
 cp -i .bash_profile ~
 cp -i .gitconfig ~
-#cp -i config ~/.ssh
-#cp -i id_rsa ~/.ssh
-#cp -i id_rsa.pub ~/.ssh
 
 echo "Installing system tools... "
 ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
@@ -79,17 +76,7 @@ if [ $REPLY == "y" ]; then
     launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 fi
 
-read -p "Do you want to setup a jboss-eap and mysql-jdbc-connector? "
-pushd ~/tools
-    JBOSS_EAP=jboss-eap-6.1.0.zip
-    MYSQL_JDBC_CONN=mysql-connector-java-5.1.27.zip
-    wget https://dl.dropboxusercontent.com/u/13515458/${JBOSS_EAP}
-    wget https://dl.dropboxusercontent.com/u/13515458/${MYSQL_JDBC_CONN}
-    unzip ${JBOSS_EAP} ${MYSQL_JDBC_CONN}
-    rm ${JBOSS_EAP} ${MYSQL_JDBC_CONN}
-popd
-
-read -p "Do you want to install some third party tools (uncommented ones)? "
+read -p "Do you want to install some third party tools? "
 if [ $REPLY == "y" ]; then
     # echo export ${HOMEBREW_GITHUB_API_TOKEN}
     brew cask install caffeine

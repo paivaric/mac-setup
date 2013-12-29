@@ -5,21 +5,24 @@ GIT_COMPLETION_SCRIPT_LOCATION="https://raw.github.com/git/git/v1.8.5.2/contrib/
 
 cd $(dirname $0)
 
-read -p "Install xcode command line tools? "
+read -p "Install xcode command line tools? (y/n) "
 if [ $REPLY == "y" ]; then
     xcode-select --install
+    read -p "Click any key to continue once xcode finishes installing command line tools... "
 fi
 
-read -p "Remove and deactivate Mac OSX Dashboard? "
+read -p "Remove and deactivate Mac OSX Dashboard? (y/n) "
 if [ $REPLY == "y" ]; then
     defaults write com.apple.dashboard mcx-disabled -boolean YES;killall Dock
 fi
 
-echo "Configuring bash... "
 # mkdir ~/code ~/tools ~/.ssh
-cp -i .bash_aliases ~
-cp -i .bash_profile ~
-cp -i .gitconfig ~
+read -p "Use my .bash_aliases .bash_profile .gitconfig? (y/n) "
+if [ $REPLY == "y" ]; then
+    cp -i .bash_aliases ~
+    cp -i .bash_profile ~
+    cp -i .gitconfig ~
+fi
 
 echo "Installing system tools... "
 ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"

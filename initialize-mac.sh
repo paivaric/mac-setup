@@ -1,6 +1,4 @@
 #!/bin/sh
-
-GIT_COMPLETION_SCRIPT_LOCATION="https://raw.github.com/git/git/v1.8.5.2/contrib/completion/git-completion.bash"
 # HOMEBREW_GITHUB_API_TOKEN=
 
 cd $(dirname $0)

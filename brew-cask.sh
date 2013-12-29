@@ -6,12 +6,14 @@ brew cask install f-lux
 brew cask install google-chrome
 brew cask install google-hangouts
 brew cask install iterm2
+brew cask install java
 brew cask install skype
 brew cask install sublime-text
 brew cask install sourcetree
 brew cask install virtualbox
 brew cask install vagrant
 brew cask install vlc
+brew cask install vmware-fusion
 
 #brew cask install app-cleaner
 #brew cask install eclipse-ide

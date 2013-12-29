@@ -25,7 +25,7 @@ if [ $REPLY == "y" ]; then
 fi
 
 echo "Installing system tools... "
-ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 brew tap phinze/homebrew-cask
 brew install brew-cask
 brew install ack

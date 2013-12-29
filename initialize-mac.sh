@@ -83,34 +83,8 @@ fi
 read -p "Do you want to install some third party tools? "
 if [ $REPLY == "y" ]; then
     # echo export ${HOMEBREW_GITHUB_API_TOKEN}
-    brew cask install caffeine
-    brew cask install coconutbattery
-    brew cask install iterm2
+    sh brew-cask.sh
 fi
-
-#brew cask install acorn
-#brew cask install alfred
-#brew cask install app-cleaner
-#brew cask install dropbox
-#brew cask install eclipse-ide
-#brew cask install f-lux
-#brew cask install filezilla
-#brew cask install google-chrome
-#brew cask install google-hangouts
-#brew cask install j-downloader
-#brew cask install logitech-unifying
-#brew cask install name-changer
-#brew cask install seashore
-#brew cask install skype
-#brew cask install sublime-text
-#brew cask install sourcetree
-#brew cask install steam
-#brew cask install team-viewer
-#brew cask install textmate
-#brew cask install true-crypt
-#brew cask install vagrant
-#brew cask install virtualbox
-#brew cask install vlc
 
 # Verify #
 brew doctor

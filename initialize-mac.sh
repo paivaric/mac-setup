@@ -17,7 +17,6 @@ if [ $REPLY == "y" ]; then
     defaults write com.apple.dashboard mcx-disabled -boolean YES;killall Dock
 fi
 
-# mkdir ~/code ~/tools ~/.ssh
 read -p "Use my .bash_aliases .bash_profile .gitconfig? (y/n) "
 if [ $REPLY == "y" ]; then
     cp -i .bash_aliases ~
@@ -59,9 +58,6 @@ if [ $REPLY == "y" ]; then
     sudo mv git-credential-osxkeychain \
       "$(dirname $(which git))/git-credential-osxkeychain"
     git config --global credential.helper osxkeychain
-
-    curl ${GIT_COMPLETION_SCRIPT_LOCATION} -o ~/.git-completion.bash
-    echo ". ~/.git-completion.bash" >> ~/.bash_profile
 
     echo "You name (for commits): "
     read GIT_NAME

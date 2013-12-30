@@ -2,6 +2,9 @@
 # HOMEBREW_GITHUB_API_TOKEN=
 
 cd $(dirname $0)
+ 
+echo "Asking for the administrator password upfront... "
+sudo -v
 
 read -p "Install xcode command line tools? (y/n) "
 if [ $REPLY == "y" ]; then
@@ -33,7 +36,7 @@ brew install ack
 brew install htop
 brew install wget
 
-read -p "Do you want to install any developer tools such as git, heroku-toolbelt, janus, maven, nvm, rb-env? "
+read -p "Do you want to install any developer tools such as git, heroku-toolbelt, janus, maven, nvm, rb-env? (y/n) "
 if [ $REPLY == "y" ]; then
     brew install git
     brew install heroku-toolbelt
@@ -44,8 +47,10 @@ if [ $REPLY == "y" ]; then
     echo export RBENV_ROOT=/usr/local/var/rbenv >> ~/.bash_profile
 fi
 
-read -p "Do you want to setup your github account?"
+read -p "Do you want to setup your github account? (y/n) "
 if [ $REPLY == "y" ]; then
+	
+	echo "Installing git https credential helper... "
     curl -s -O \
       http://github-media-downloads.s3.amazonaws.com/osx/git-credential-osxkeychain
     chmod u+x git-credential-osxkeychain
@@ -64,7 +69,7 @@ if [ $REPLY == "y" ]; then
     read GIT_EMAIL
     git config --global user.email ${GIT_EMAIL}
     if [ ! -f ~/.ssh/id_rsa ]; then
-        read -p "Do you want to generate new ssh keys with this email? "
+        read -p "Do you want to generate new ssh keys with this email? (y/n) "
         if [ $REPLY == "y" ]; then
             ssh-keygen -t rsa -C ${GIT_EMAIL}
             ssh-add id_rsa
@@ -72,7 +77,7 @@ if [ $REPLY == "y" ]; then
     fi
 fi
 
-read -p "Do you want to setup a local mysql database? "
+read -p "Do you want to setup a local mysql database? (y/n) "
 if [ $REPLY == "y" ]; then
     brew install mysql
     mkdir -p ~/Library/LaunchAgents
@@ -80,7 +85,7 @@ if [ $REPLY == "y" ]; then
     launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 fi
 
-read -p "Do you want to install some third party tools? "
+read -p "Do you want to install some third party tools? (y/n) "
 if [ $REPLY == "y" ]; then
     # echo export ${HOMEBREW_GITHUB_API_TOKEN}
     sh brew-cask.sh

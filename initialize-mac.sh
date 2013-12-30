@@ -25,10 +25,12 @@ if [ $REPLY == "y" ]; then
     cp -i .gitconfig ~
 fi
 
-echo "Installing system tools... "
-ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
-echo export PATH='/usr/local/bin:$PATH' >> ~/.bash_profile
-source ~/.bash_profile
+brew_path=`which brew`
+if [[ ! -f $brew_path ]]; then
+    ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+    echo export PATH='/usr/local/bin:$PATH' >> ~/.bash_profile
+    source ~/.bash_profile
+fi
 
 brew tap phinze/homebrew-cask
 brew install brew-cask
